@@ -1,22 +1,24 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 interface HeroProps {
   className?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({}) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -48]);
   const y = useSpring(rawY, { stiffness: 60, damping: 14 });
 
   return (
     <section className="hero" role="banner">
-      <div className="hero__background">
+      <div className="hero__bg">
         <Image 
           src="/images/hero.png" 
           alt="Kimi Tin Organist" 

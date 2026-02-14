@@ -1,0 +1,67 @@
+{
+  "navbar": {
+    "home": "Home",
+    "music": "Music",
+    "musicSheet": "Sheet Music",
+    "performance": "Performance",
+    "merchandise": "Merchandise",
+    "news": "News",
+    "video": "Video",
+    "bookPerformance": "Book Performance",
+    "about": "About",
+    "contact": "Contact",
+    "language": "Language",
+    "english": "EN",
+    "chinese": "CN"
+  },
+  "hero": {
+    "title": "KIMI TIN ORGANIST",
+    "subtitle": "Professional Organist & Musician",
+    "cta": "Learn More"
+  },
+  "bio": {
+    "title": "Biography",
+    "paragraph1": "Kimi Tin is an outstanding organist known for his exquisite technique and emotional interpretation. He graduated from world-renowned music schools, won awards in multiple international competitions, and held solo concerts in prestigious concert halls around the world.",
+    "paragraph2": "Kimi's playing style blends traditional and modern elements. He excels not only in classical organ works but also in promoting modern organ music. His performances are full of passion and expressiveness, deeply touching the hearts of listeners.",
+    "paragraph3": "As an active musician, Kimi frequently collaborates with other artists to explore the fusion possibilities of the organ with other instruments. He is also a dedicated music educator, committed to cultivating young organ talent."
+  },
+  "music": {
+    "title": "Music"
+  },
+  "news": {
+    "title": "Latest News",
+    "item1": "News Title: Tian Hao playing religious music in a church",
+    "item2": "News Title: Tian Hao playing religious music in a church and receiving love from church members",
+    "item3": "News Title: Tian Hao participating in organist exchange activities abroad, with famous organists",
+    "item4": "News Title: Tian Hao playing religious music in a church",
+    "item5": "News Title: Tian Hao playing religious music in a church",
+    "item6": "News Title: Tian Hao in a church"
+  },
+  "performance": {
+    "title": "Book a Performance",
+    "paragraph1": "Kimi Tin accepts various performance bookings, including concert hall recitals, church ceremonies, weddings, corporate events, and more.",
+    "paragraph2": "If you have performance needs, please contact us through the following methods, and we will respond to your inquiry within 24 hours.",
+    "contact": "Contact Us",
+    "phone": "Phone: +853 6274 7708",
+    "email": "Email: contact@kimitinorganist.cn",
+    "button": "Book Now"
+  },
+  "video": {
+    "title": "Videos",
+    "item1": "Bach: Organ Works",
+    "item2": "Mozart: Organ Concertos",
+    "item3": "Beethoven: Organ Sonatas",
+    "item4": "Chopin: Organ Arrangements",
+    "item5": "Liszt: Organ Works",
+    "item6": "Modern Organ Music"
+  },
+  "footer": {
+    "copyright": "© {year} Kimi Tin Organist. All rights reserved.",
+    "contact": "Contact Us",
+    "phone": "Phone: +853 6274 7708",
+    "email": "Email: contact@kimitinorganist.cn",
+    "social": "Social Media",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 interface VideoItem {
   id: number;
@@ -11,8 +13,7 @@ interface VideoItem {
 }
 
 const VideoGrid: React.FC = () => {
-  const { t } = useTranslation();
-  // Mock data for videos
+  const t = useTranslations();
   const videos: VideoItem[] = [
     {
       id: 1,

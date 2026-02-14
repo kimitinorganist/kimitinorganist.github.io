@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 interface NewsItem {
   id: number;
@@ -10,8 +12,7 @@ interface NewsItem {
 }
 
 const NewsSection: React.FC = () => {
-  const { t } = useTranslation();
-  // Mock data for news
+  const t = useTranslations();
   const newsItems: NewsItem[] = [
     {
       id: 1,

@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 const BioSection: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section className="bio-section" id="bio" role="region" aria-label="Biography">
       <div className="bio-section__container site__container">

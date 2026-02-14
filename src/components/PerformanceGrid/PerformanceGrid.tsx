@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 import LocaleLink from '../LocaleLink/LocaleLink';
 
 const PerformanceSection: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section className="performance-section" id="performances" role="region" aria-label="Book a performance">
       <div className="performance-section__container site__container">
