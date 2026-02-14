@@ -13,42 +13,42 @@ interface VideoItem {
 }
 
 const VideoGrid: React.FC = () => {
-  const t = useTranslations();
+  const t = useTranslations('video');
   const videos: VideoItem[] = [
     {
-      id: 1,
+      id:1,
       thumbnail: '/images/hero.png',
-      title: t('video.item1'),
+      title: t('item1'),
       date: '2024.05.15'
     },
     {
       id: 2,
       thumbnail: '/images/hero.png',
-      title: t('video.item2'),
+      title: t('item2'),
       date: '2024.04.20'
     },
     {
       id: 3,
       thumbnail: '/images/hero.png',
-      title: t('video.item3'),
+      title: t('item3'),
       date: '2024.03.10'
     },
     {
       id: 4,
       thumbnail: '/images/hero.png',
-      title: t('video.item4'),
+      title: t('item4'),
       date: '2024.02.05'
     },
     {
       id: 5,
       thumbnail: '/images/hero.png',
-      title: t('video.item5'),
+      title: t('item5'),
       date: '2024.01.18'
     },
     {
       id: 6,
       thumbnail: '/images/hero.png',
-      title: t('video.item6'),
+      title: t('item6'),
       date: '2023.12.25'
     }
   ];
@@ -63,7 +63,7 @@ const VideoGrid: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {t('video.title')}
+          {t('title')}
         </motion.h2>
         <div className="video-grid__grid">
           {videos.map((video) => (

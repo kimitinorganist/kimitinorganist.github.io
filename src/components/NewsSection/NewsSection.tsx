@@ -12,37 +12,37 @@ interface NewsItem {
 }
 
 const NewsSection: React.FC = () => {
-  const t = useTranslations();
+  const t = useTranslations('news');
   const newsItems: NewsItem[] = [
     {
       id: 1,
       image: '/images/hero.png',
-      title: t('news.item1')
+      title: t('item1')
     },
     {
       id: 2,
       image: '/images/hero.png',
-      title: t('news.item2')
+      title: t('item2')
     },
     {
       id: 3,
       image: '/images/hero.png',
-      title: t('news.item3')
+      title: t('item3')
     },
     {
       id: 4,
       image: '/images/hero.png',
-      title: t('news.item4')
+      title: t('item4')
     },
     {
       id: 5,
       image: '/images/hero.png',
-      title: t('news.item5')
+      title: t('item5')
     },
     {
       id: 6,
       image: '/images/hero.png',
-      title: t('news.item6')
+      title: t('item6')
     }
   ];
 
@@ -56,7 +56,7 @@ const NewsSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {t('news.title')}
+          {t('title')}
         </motion.h2>
         <div className="news-section__grid">
           {newsItems.map((news) => (

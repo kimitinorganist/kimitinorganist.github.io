@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({}) => {
-  const t = useTranslations();
+  const t = useTranslations('hero');
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -48]);
   const y = useSpring(rawY, { stiffness: 60, damping: 14 });
@@ -33,15 +33,15 @@ const Hero: React.FC<HeroProps> = ({}) => {
         className="hero__content"
         style={{ y }}
       >
-        <h1 className="hero__title">{t('hero.title')}</h1>
-        <p className="hero__subtitle">{t('hero.subtitle')}</p>
+        <h1 className="hero__title">{t('title')}</h1>
+        <p className="hero__subtitle">{t('subtitle')}</p>
         <motion.a 
           className="hero__cta" 
           href="/#about"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {t('hero.cta')}
+          {t('cta')}
         </motion.a>
       </motion.div>
     </section>
