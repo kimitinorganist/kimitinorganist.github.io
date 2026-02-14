@@ -1,23 +1,25 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
 import LocaleLink from '../LocaleLink/LocaleLink';
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const router = useRouter();
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const t = useTranslations('navbar');
   const [open, setOpen] = useState(false);
   const [musicDropdownOpen, setMusicDropdownOpen] = useState(false);
   const [mobileMusicOpen, setMobileMusicOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
   
-  // Get current locale from router
-  const currentLocale = router.locale || 'zh-CN';
-  const isEnglish = currentLocale === 'en';
+  const isEnglish = locale === 'en';
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 200);
@@ -27,13 +29,11 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Switch language
   const switchLanguage = (lang: string) => {
-    const { pathname, asPath, query } = router;
-    router.push({ pathname, query }, asPath, { locale: lang });
+    const newPathname = pathname.replace(`/${locale}`, `/${lang}`);
+    router.push(newPathname);
   };
 
-  // 处理下拉菜单的显示和隐藏
   const handleDropdownShow = () => {
     if (dropdownTimeout) {
       clearTimeout(dropdownTimeout);
@@ -59,15 +59,15 @@ const Navbar: React.FC = () => {
         </div>
 
         <nav className="navbar__nav" aria-label="Primary navigation">
-          <LocaleLink className="navbar__link" href="/">{t('navbar.home')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/">{t('home')}</LocaleLink>
           
           <div 
             className="navbar__dropdown"
             onMouseEnter={handleDropdownShow}
             onMouseLeave={handleDropdownHide}
           >
-            <a className="navbar__link" href={`/${currentLocale}#music`}>
-              {t('navbar.music')}
+            <a className="navbar__link" href={`/${locale}#music`}>
+              {t('music')}
             </a>
             {musicDropdownOpen && (
               <div 
@@ -75,24 +75,24 @@ const Navbar: React.FC = () => {
                 onMouseEnter={handleDropdownShow}
                 onMouseLeave={handleDropdownHide}
               >
-                <LocaleLink className="navbar__dropdown-link" href="/sheet-music">{t('navbar.musicSheet')}</LocaleLink>
-                <LocaleLink className="navbar__dropdown-link" href="/performances">{t('navbar.performance')}</LocaleLink>
+                <LocaleLink className="navbar__dropdown-link" href="/sheet-music">{t('musicSheet')}</LocaleLink>
+                <LocaleLink className="navbar__dropdown-link" href="/performances">{t('performance')}</LocaleLink>
               </div>
             )}
           </div>
           
-          <LocaleLink className="navbar__link" href="/merchandise">{t('navbar.merchandise')}</LocaleLink>
-          <LocaleLink className="navbar__link" href="/news">{t('navbar.news')}</LocaleLink>
-          <LocaleLink className="navbar__link" href="/videos">{t('navbar.video')}</LocaleLink>
-          <LocaleLink className="navbar__link" href="/events">{t('navbar.bookPerformance')}</LocaleLink>
-          <LocaleLink className="navbar__link" href="/about">{t('navbar.about')}</LocaleLink>
-          <LocaleLink className="navbar__link" href="/contact">{t('navbar.contact')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/merchandise">{t('merchandise')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/news">{t('news')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/videos">{t('video')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/events">{t('bookPerformance')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/about">{t('about')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/contact">{t('contact')}</LocaleLink>
           
           <button 
             className="navbar__lang-toggle"
-            onClick={() => switchLanguage(isEnglish ? 'zh-CN' : 'en')}
+            onClick={() => switchLanguage(isEnglish ? 'zh' : 'en')}
           >
-            {isEnglish ? t('navbar.chinese') : t('navbar.english')}
+            {isEnglish ? t('chinese') : t('english')}
           </button>
         </nav>
 
@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
             onClick={() => setOpen(false)}
           >
             <div className="navbar__mobile-inner site__container">
-              <LocaleLink className="navbar__mobile-link" href="/">{t('navbar.home')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/">{t('home')}</LocaleLink>
               
               <div className="navbar__mobile-dropdown">
                 <button 
@@ -127,30 +127,30 @@ const Navbar: React.FC = () => {
                     setMobileMusicOpen(!mobileMusicOpen);
                   }}
                 >
-                  {t('navbar.music')}
+                  {t('music')}
                 </button>
                 {mobileMusicOpen && (
                   <div className="navbar__mobile-submenu">
-                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/sheet-music">{t('navbar.musicSheet')}</LocaleLink>
-                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/performances">{t('navbar.performance')}</LocaleLink>
+                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/sheet-music">{t('musicSheet')}</LocaleLink>
+                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/performances">{t('performance')}</LocaleLink>
                   </div>
                 )}
               </div>
               
-              <LocaleLink className="navbar__mobile-link" href="/merchandise">{t('navbar.merchandise')}</LocaleLink>
-              <LocaleLink className="navbar__mobile-link" href="/news">{t('navbar.news')}</LocaleLink>
-              <LocaleLink className="navbar__mobile-link" href="/videos">{t('navbar.video')}</LocaleLink>
-              <LocaleLink className="navbar__mobile-link" href="/events">{t('navbar.bookPerformance')}</LocaleLink>
-              <LocaleLink className="navbar__mobile-link" href="/about">{t('navbar.about')}</LocaleLink>
-              <LocaleLink className="navbar__mobile-link" href="/contact">{t('navbar.contact')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/merchandise">{t('merchandise')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/news">{t('news')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/videos">{t('video')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/events">{t('bookPerformance')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/about">{t('about')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/contact">{t('contact')}</LocaleLink>
               <button 
                 className="navbar__lang-toggle"
                 onClick={(e) => {
                   e.stopPropagation();
-                  switchLanguage(isEnglish ? 'zh-CN' : 'en');
+                  switchLanguage(isEnglish ? 'zh' : 'en');
                 }}
               >
-                {isEnglish ? t('navbar.chinese') : t('navbar.english')}
+                {isEnglish ? t('chinese') : t('english')}
               </button>
             </div>
           </motion.div>

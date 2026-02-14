@@ -17,7 +17,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.85), transparent);
+    background: linear-gradient(180deg, rgba(0,0,0,0.7), transparent);
     z-index: 1;
   }
 
@@ -32,6 +32,8 @@
     max-width: 920px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 10;
 
     @include mq-mobile { padding: 3.2rem 0; }
     @include mq-tablet { padding: 4.5rem 0; }
@@ -49,12 +51,28 @@
   }
 
   &__subtitle {
-    color: $color-muted;
+    color: $color-text;
     margin-bottom: 1.4rem;
     font-size: 1.05rem;
   }
 
-  &__cta { display: flex; gap: 1rem; }
+  &__cta {
+    display: inline-block;
+    padding: .6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+    border: 1px solid rgba($color-accent, .5);
+    background: linear-gradient(180deg, rgba($color-accent, .3), rgba($color-accent, .2));
+    color: $color-text;
+    text-decoration: none;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, rgba($color-accent, .4), rgba($color-accent, .3));
+    }
+  }
 
   @include mq-1080p {
     &__content { max-width: 980px; }

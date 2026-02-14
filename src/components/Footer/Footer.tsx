@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 import LocaleLink from '../LocaleLink/LocaleLink';
 
 const Footer: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations('footer');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -15,12 +17,12 @@ const Footer: React.FC = () => {
           </div>
           <div className="footer__info">
             <p className="footer__copyright">
-              © {currentYear} Kimi Tin Organist. All rights reserved.
+              {t('copyright', { year: currentYear })}
             </p>
             <div className="footer__links">
-              <LocaleLink href="/privacy" className="footer__link">{t('footer.privacy')}</LocaleLink>
-              <LocaleLink href="/terms" className="footer__link">{t('footer.terms')}</LocaleLink>
-              <LocaleLink href="/contact" className="footer__link">{t('footer.contact')}</LocaleLink>
+              <LocaleLink href="/privacy" className="footer__link">{t('privacy')}</LocaleLink>
+              <LocaleLink href="/terms" className="footer__link">{t('terms')}</LocaleLink>
+              <LocaleLink href="/contact" className="footer__link">{t('contact')}</LocaleLink>
             </div>
           </div>
         </div>

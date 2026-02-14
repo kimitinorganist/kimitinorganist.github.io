@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 import LocaleLink from '../LocaleLink/LocaleLink';
 
 const PerformanceSection: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations('performance');
   return (
     <section className="performance-section" id="performances" role="region" aria-label="Book a performance">
       <div className="performance-section__container site__container">
@@ -16,7 +18,7 @@ const PerformanceSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {t('performance.title')}
+            {t('title')}
           </motion.h2>
           <motion.p 
             className="performance-section__paragraph"
@@ -25,7 +27,7 @@ const PerformanceSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {t('performance.paragraph1')}
+            {t('paragraph1')}
           </motion.p>
           <motion.p 
             className="performance-section__paragraph"
@@ -34,7 +36,7 @@ const PerformanceSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {t('performance.paragraph2')}
+            {t('paragraph2')}
           </motion.p>
           <motion.div 
             className="performance-section__contact"
@@ -44,10 +46,10 @@ const PerformanceSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <p className="performance-section__contact-item">
-              <strong>{t('performance.email')}</strong>
+              <strong>{t('email')}</strong>
             </p>
             <p className="performance-section__contact-item">
-              <strong>{t('performance.phone')}</strong>
+              <strong>{t('phone')}</strong>
             </p>
           </motion.div>
           <motion.div 
@@ -60,7 +62,7 @@ const PerformanceSection: React.FC = () => {
               href="/contact" 
               className="performance-section__button btn btn--primary"
             >
-              {t('performance.button')}
+              {t('button')}
             </LocaleLink>
           </motion.div>
         </div>

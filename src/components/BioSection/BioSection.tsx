@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 const BioSection: React.FC = () => {
-  const { t } = useTranslation();
+  const t = useTranslations('bio');
   return (
     <section className="bio-section" id="bio" role="region" aria-label="Biography">
       <div className="bio-section__container site__container">
@@ -15,7 +17,7 @@ const BioSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {t('bio.title')}
+            {t('title')}
           </motion.h2>
           <motion.p 
             className="bio-section__paragraph"
@@ -24,7 +26,7 @@ const BioSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {t('bio.paragraph1')}
+            {t('paragraph1')}
           </motion.p>
           <motion.p 
             className="bio-section__paragraph"
@@ -33,7 +35,7 @@ const BioSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {t('bio.paragraph2')}
+            {t('paragraph2')}
           </motion.p>
           <motion.p 
             className="bio-section__paragraph"
@@ -42,7 +44,7 @@ const BioSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            {t('bio.paragraph3')}
+            {t('paragraph3')}
           </motion.p>
         </div>
       </div>
