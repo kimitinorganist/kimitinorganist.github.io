@@ -9,7 +9,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({}) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation();
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -48]);
   const y = useSpring(rawY, { stiffness: 60, damping: 14 });
