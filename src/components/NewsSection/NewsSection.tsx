@@ -66,7 +66,7 @@ const NewsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: news.id * 0.1 }}
-              whileHover={{ y: -10, transition: { duration: 0.2 } }}
+              whileHover={{ scale: 1.12, transition: { duration: 0.3 } }}
             >
               <div className="news-section__image">
                 <Image 

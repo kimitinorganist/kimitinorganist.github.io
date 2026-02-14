@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
       <div className="footer__container site__container">
         <div className="footer__content">
           <div className="footer__brand">
-            <LocaleLink href="/">田昊天</LocaleLink>
+            <LocaleLink href="/">Kimi Tin Organist</LocaleLink>
           </div>
           <div className="footer__info">
             <p className="footer__copyright">
-              © {currentYear} 田昊天. All rights reserved.
+              © {currentYear} Kimi Tin Organist. All rights reserved.
             </p>
             <div className="footer__links">
               <LocaleLink href="/privacy" className="footer__link">{t('footer.privacy')}</LocaleLink>
