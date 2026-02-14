@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 
 export const metadata: Metadata = {
@@ -27,10 +26,13 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages({ locale });
-
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
+    <NextIntlClientProvider
+      locale={locale}
+      messages={{
+        // Empty messages for now - we'll load them on the client
+      }}
+    >
       {children}
     </NextIntlClientProvider>
   );
