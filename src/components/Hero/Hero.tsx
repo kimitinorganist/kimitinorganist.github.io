@@ -32,17 +32,19 @@ const Hero: React.FC<HeroProps> = ({}) => {
       <motion.div 
         className="hero__content"
         style={{ y }}
+        initial={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
       >
         <h1 className="hero__title">{t('title')}</h1>
-        <p className="hero__subtitle">{t('subtitle')}</p>
-        <motion.a 
+        {/* <p className="hero__subtitle">{t('subtitle')}</p> */}
+        {/* <motion.a 
           className="hero__cta" 
           href="/#about"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           {t('cta')}
-        </motion.a>
+        </motion.a> */}
       </motion.div>
     </section>
   );

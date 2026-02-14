@@ -4,7 +4,7 @@ import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: "Kimitin Organist",
+  title: "KIMI TIN ORGANIST",
   description: "Professional Organist & Musician",
 };
 
@@ -27,10 +27,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider messages={messages} locale={locale}>
       {children}
     </NextIntlClientProvider>
   );
