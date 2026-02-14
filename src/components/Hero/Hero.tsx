@@ -25,6 +25,7 @@ const Hero: React.FC<HeroProps> = ({}) => {
           style={{ objectFit: 'cover' }}
           sizes="100vw"
         />
+        <div className="hero__overlay"></div>
       </div>
       <motion.div 
         className="hero__content"
