@@ -1,0 +1,29 @@
+@import 'variables';
+
+// Responsive breakpoint mixins (BEM-friendly)
+@mixin mq-mobile { @media (max-width: $bp-mobile-max) { @content; } }
+@mixin mq-tablet { @media (min-width: $bp-tablet-min) and (max-width: $bp-tablet-max) { @content; } }
+@mixin mq-1080p { @media (min-width: $bp-1080p-min) and (max-width: $bp-1080p-max) { @content; } }
+@mixin mq-2k { @media (min-width: $bp-2k-min) { @content; } }
+
+// Centering / container
+@mixin container {
+  width: 100%;
+  max-width: $max-content-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+// Simple utility mixins
+@mixin visually-center { display: flex; align-items: center; justify-content: center; }
+
+@mixin font-scale($scale) { font-size: calc(#{$base-font-size} * #{$scale}); }
+
+// Image hover zoom (re-usable for AlbumGrid etc.)
+@mixin image-hover-zoom($scale: 1.06, $duration: 300ms) {
+  transition: transform $duration cubic-bezier(.2,.9,.2,1);
+  will-change: transform;
+  &:hover { transform: scale($scale); }
+}

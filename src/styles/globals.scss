@@ -1,0 +1,51 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+
+// Component-level styles (imported globally from the app)
+@import '../components/Navbar/Navbar.scss';
+@import '../components/Hero/Hero.scss';
+@import '../components/BioSection/BioSection.scss';
+@import '../components/PerformanceGrid/PerformanceGrid.scss';
+@import '../components/MusicSection/MusicSection.scss';
+@import '../components/NewsSection/NewsSection.scss';
+@import '../components/VideoGrid/VideoGrid.scss';
+@import '../components/Footer/Footer.scss';
+
+/* Global reset + base styles */
+* { box-sizing: border-box; }
+html, body, #__next { height: 100%; }
+body {
+  margin: 0;
+  background: $color-bg;
+  color: $color-text;
+  font-family: $base-font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: $base-font-size;
+  line-height: 1.5;
+}
+
+a { color: $color-accent; text-decoration: none; transition: color .18s ease; }
+img { max-width: 100%; display: block; }
+
+/* Page container (centers + applies max-width on large screens) */
+.site__container { @include container; }
+
+/* Headings */
+h1, h2, h3 { margin: 0; color: $color-text; font-family: $heading-font-family; }
+
+/* Buttons (simple variants used in Hero) */
+.btn { display: inline-block; padding: .6rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; border: 1px solid rgba($color-text, .06); background: transparent; color: $color-text; }
+.btn--primary { background: linear-gradient(180deg, rgba($color-accent, .12), rgba($color-accent, .06)); color: $color-accent; border-color: rgba($color-accent, .18); }
+.btn--ghost { background: transparent; border-color: rgba($color-text, .06); }
+.btn:hover { transform: translateY(-2px); }
+
+/* Accessibility helper */
+.sr-only { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+
+/* 2K screen adjustments */
+@include mq-2k {
+  body { font-size: 1.06rem; }
+  .site__container { max-width: $max-content-width; }
+  h1 { letter-spacing: -0.01em; }
+}

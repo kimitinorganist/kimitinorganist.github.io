@@ -1,0 +1,163 @@
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from '../../hooks/useTranslation';
+import LocaleLink from '../LocaleLink/LocaleLink';
+
+const Navbar: React.FC = () => {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const [musicDropdownOpen, setMusicDropdownOpen] = useState(false);
+  const [mobileMusicOpen, setMobileMusicOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  
+  // Get current locale from router
+  const currentLocale = router.locale || 'zh-CN';
+  const isEnglish = currentLocale === 'en';
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Switch language
+  const switchLanguage = (lang: string) => {
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lang });
+  };
+
+  // 处理下拉菜单的显示和隐藏
+  const handleDropdownShow = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setMusicDropdownOpen(true);
+  };
+
+  const handleDropdownHide = () => {
+    const timeout = setTimeout(() => {
+      setMusicDropdownOpen(false);
+    }, 200);
+    setDropdownTimeout(timeout);
+  };
+
+  return (
+    <header className={"navbar " + (scrolled ? "navbar--scrolled" : "")}>
+      <div className="navbar__container site__container">
+        <div className="navbar__brand">
+          <LocaleLink href="/">
+            <img src="/images/logo.svg" alt="Kimi Tin Organist" className="navbar__logo" />
+          </LocaleLink>
+        </div>
+
+        <nav className="navbar__nav" aria-label="Primary navigation">
+          <LocaleLink className="navbar__link" href="/">{t('navbar.home')}</LocaleLink>
+          
+          <div 
+            className="navbar__dropdown"
+            onMouseEnter={handleDropdownShow}
+            onMouseLeave={handleDropdownHide}
+          >
+            <a className="navbar__link" href={`/${currentLocale}#music`}>
+              {t('navbar.music')}
+            </a>
+            {musicDropdownOpen && (
+              <div 
+                className="navbar__dropdown-menu"
+                onMouseEnter={handleDropdownShow}
+                onMouseLeave={handleDropdownHide}
+              >
+                <LocaleLink className="navbar__dropdown-link" href="/sheet-music">{t('navbar.musicSheet')}</LocaleLink>
+                <LocaleLink className="navbar__dropdown-link" href="/performances">{t('navbar.performance')}</LocaleLink>
+              </div>
+            )}
+          </div>
+          
+          <LocaleLink className="navbar__link" href="/merchandise">{t('navbar.merchandise')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/news">{t('navbar.news')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/videos">{t('navbar.video')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/events">{t('navbar.bookPerformance')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/about">{t('navbar.about')}</LocaleLink>
+          <LocaleLink className="navbar__link" href="/contact">{t('navbar.contact')}</LocaleLink>
+          
+          <button 
+            className="navbar__lang-toggle"
+            onClick={() => switchLanguage(isEnglish ? 'zh-CN' : 'en')}
+          >
+            {isEnglish ? t('navbar.chinese') : t('navbar.english')}
+          </button>
+        </nav>
+
+        <button
+          className="navbar__toggle"
+          aria-expanded={open}
+          aria-label="Toggle menu"
+          onClick={() => setOpen(v => !v)}
+        >
+          <span className="hamburger" />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div 
+            className="navbar__mobile" 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            transition={{ duration: 0.3 }}
+            onClick={() => setOpen(false)}
+          >
+            <div className="navbar__mobile-inner site__container">
+              <LocaleLink className="navbar__mobile-link" href="/">{t('navbar.home')}</LocaleLink>
+              
+              <div className="navbar__mobile-dropdown">
+                <button 
+                  className="navbar__mobile-link" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMobileMusicOpen(!mobileMusicOpen);
+                  }}
+                >
+                  {t('navbar.music')}
+                </button>
+                {mobileMusicOpen && (
+                  <div className="navbar__mobile-submenu">
+                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/sheet-music">{t('navbar.musicSheet')}</LocaleLink>
+                    <LocaleLink className="navbar__mobile-link navbar__mobile-subitem" href="/performances">{t('navbar.performance')}</LocaleLink>
+                  </div>
+                )}
+              </div>
+              
+              <LocaleLink className="navbar__mobile-link" href="/merchandise">{t('navbar.merchandise')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/news">{t('navbar.news')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/videos">{t('navbar.video')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/events">{t('navbar.bookPerformance')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/about">{t('navbar.about')}</LocaleLink>
+              <LocaleLink className="navbar__mobile-link" href="/contact">{t('navbar.contact')}</LocaleLink>
+              <button 
+                className="navbar__lang-toggle"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  switchLanguage(isEnglish ? 'zh-CN' : 'en');
+                }}
+              >
+                {isEnglish ? t('navbar.chinese') : t('navbar.english')}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+};
+
+export default Navbar;

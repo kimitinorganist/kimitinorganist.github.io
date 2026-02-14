@@ -1,0 +1,140 @@
+.news-section {
+  padding: 8rem 0;
+  background: #000;
+  color: $color-text;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  &__container {
+    max-width: 1200px;
+  }
+
+  &__title {
+    font-family: $heading-font-family;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    color: $color-text;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include mq-mobile {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+
+    // Mobile layout: 6 items in a single column, all same size
+    @include mq-mobile {
+      grid-template-columns: 1fr;
+    }
+
+    // Tablet layout: 3 rows, first 4 larger, last 2 smaller
+    @include mq-tablet {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "item1 item2"
+        "item3 item4"
+        "item5 item6";
+    }
+
+    // Desktop layout: 2 rows, first 3 larger, last 3 smaller
+    @include mq-1080p {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "item1 item2 item3"
+        "item4 item5 item6";
+    }
+  }
+
+  &__item {
+    background: rgba($color-text, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+    }
+
+    // Tablet-specific sizing
+    @include mq-tablet {
+      &--large {
+        grid-row: span 1;
+      }
+      &--small {
+        grid-row: span 1;
+      }
+    }
+
+    // Desktop-specific sizing
+    @include mq-1080p {
+      &--large {
+        grid-row: span 1;
+      }
+      &--small {
+        grid-row: span 1;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    padding-bottom: 60%; // Aspect ratio for images
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .news-section__item:hover & img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item-title {
+    font-family: $heading-font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-text;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// Individual item positioning for different layouts
+@include mq-tablet {
+  .news-section__item:nth-child(1) { grid-area: item1; }
+  .news-section__item:nth-child(2) { grid-area: item2; }
+  .news-section__item:nth-child(3) { grid-area: item3; }
+  .news-section__item:nth-child(4) { grid-area: item4; }
+  .news-section__item:nth-child(5) { grid-area: item5; }
+  .news-section__item:nth-child(6) { grid-area: item6; }
+}
+
+@include mq-1080p {
+  .news-section__item:nth-child(1) { grid-area: item1; }
+  .news-section__item:nth-child(2) { grid-area: item2; }
+  .news-section__item:nth-child(3) { grid-area: item3; }
+  .news-section__item:nth-child(4) { grid-area: item4; }
+  .news-section__item:nth-child(5) { grid-area: item5; }
+  .news-section__item:nth-child(6) { grid-area: item6; }
+}

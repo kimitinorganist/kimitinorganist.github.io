@@ -1,0 +1,30 @@
+// Core design variables for Kimi Tin Organist
+// 主色调：深黑 #0a0a0a，强调色：管风琴金 #c5a059
+
+// Colors
+$color-bg: #0a0a0a;
+$color-accent: #c5a059;
+$color-accent-700: #a98245;
+$color-text: #e6e1d9;
+$color-muted: #9f9685;
+
+// Breakpoints
+$bp-mobile-max: 767px;            // Mobile: < 768px
+$bp-tablet-min: 768px;            // Tablet start
+$bp-tablet-max: 1079px;          // Tablet end
+$bp-1080p-min: 1080px;           // Desktop 1080p start
+$bp-1080p-max: 1919px;           // Desktop 1080p end
+$bp-2k-min: 1920px;              // 2K+
+
+// Layout
+$max-content-width: 1600px;      // 内容区最大宽度（2K 视觉限制）
+$container-padding: 1rem;
+
+// Typography
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+$heading-font-family: "Playfair Display", $base-font-family;
+$base-font-size: 16px;
+
+// Z-index
+$z-index-nav: 1000;
+$z-index-hero-content: 50;
