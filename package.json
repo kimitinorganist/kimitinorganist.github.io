@@ -2,6 +2,9 @@
   "name": "kimitinorganist.github.io",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "@swc/helpers": "^0.5.17"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
