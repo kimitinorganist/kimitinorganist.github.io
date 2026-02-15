@@ -1,7 +1,7 @@
 .performance-section {
   padding: 8rem 0;
   background: $color-bg;
-  background-image: url('/images/performance.png');
+  background-image: url('/images/performance.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -100,6 +100,6 @@
 
   // Mobile background image
   @include mq-mobile {
-    background-image: url('/images/performance-mobile.png');
+    background-image: url('/images/performance-mobile.jpg');
   }
 }

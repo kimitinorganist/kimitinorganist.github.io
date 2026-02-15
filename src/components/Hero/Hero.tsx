@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
@@ -15,12 +15,31 @@ const Hero: React.FC<HeroProps> = ({}) => {
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -48]);
   const y = useSpring(rawY, { stiffness: 60, damping: 14 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 检测屏幕宽度，判断是否为移动端
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // 初始化检测
+    checkIsMobile();
+
+    // 监听窗口大小变化
+    window.addEventListener('resize', checkIsMobile);
+
+    // 清理事件监听器
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
+  }, []);
 
   return (
     <section className="hero" role="banner">
       <div className="hero__bg">
         <Image 
-          src="/images/hero.png" 
+          src={isMobile ? "/images/hero-mobile.jpg" : "/images/hero.jpg"} 
           alt="Kimi Tin Organist" 
           fill 
           priority 
