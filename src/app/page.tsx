@@ -3,18 +3,24 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function HomePage() {
+export default function RootPage() {
   const router = useRouter();
   
   useEffect(() => {
-    // 从 navigator 中获取 userAgent
     const userAgent = navigator.userAgent || '';
+    let targetLocale = 'en';
     
-    // 判断是否为中文用户
-    const isChinese = /zh-CN|zh-TW|zh-HK/.test(userAgent);
+    if (userAgent) {
+      const lowerAgent = userAgent.toLowerCase();
+      
+      if (lowerAgent.includes('zh-cn') || lowerAgent.includes('zh_tw')) {
+        targetLocale = 'zh';
+      } else if (lowerAgent.includes('zh-hk')) {
+        targetLocale = 'en';
+      }
+    }
     
-    // 根据判断结果重定向到对应的语言路径
-    router.push(`/${isChinese ? 'zh' : 'en'}`);
+    router.replace(`/${targetLocale}`);
   }, [router]);
   
   return null;

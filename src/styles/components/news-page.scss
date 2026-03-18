@@ -1,25 +1,55 @@
-.news-section {
-  padding: 4rem 0;
-  
+.news-page {
+  &__hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  &__hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+  }
+
   &__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    margin-top: -60px;
+    position: relative;
+    z-index: 1;
   }
-  
+
   &__title {
     font-family: $heading-font-family;
     font-size: 2.5rem;
     font-weight: 700;
-    color: $color-text;
+    color: #ffffff;
     margin-bottom: 3rem;
     text-align: center;
+    background: #101012;
+    padding: 1.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
   }
-  
-  &__grid {
+
+  &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    margin-bottom: 100px;
     
     @include mq-tablet {
       grid-template-columns: repeat(2, 1fr);
@@ -29,11 +59,11 @@
       grid-template-columns: 1fr;
     }
   }
-  
+
   &__item {
     border-radius: 12px;
     overflow: hidden;
-    background: $color-bg;
+    background: #101012;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     
@@ -52,14 +82,14 @@
       grid-row: span 1;
     }
   }
-  
+
   &__link {
     display: block;
     text-decoration: none;
     color: inherit;
     height: 100%;
   }
-  
+
   &__image {
     aspect-ratio: 16/9;
     overflow: hidden;
@@ -71,11 +101,11 @@
       transition: transform 0.3s ease;
     }
   }
-  
+
   &__info {
     padding: 1.5rem;
   }
-  
+
   &__item-title {
     font-family: $heading-font-family;
     font-size: 1.25rem;
@@ -84,7 +114,7 @@
     margin-bottom: 0.5rem;
     line-height: 1.4;
   }
-  
+
   &__item-date {
     color: $color-muted;
     font-size: 0.875rem;

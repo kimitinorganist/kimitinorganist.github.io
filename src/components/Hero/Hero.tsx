@@ -4,14 +4,34 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 interface HeroProps {
   className?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({}) => {
-  const t = useTranslations('hero');
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en');
+  
+  const t = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        title: 'KIMI TIN ORGANIST',
+        subtitle: 'Organist & Musician',
+        cta: 'Learn More',
+      },
+      zh: {
+        title: 'KIMI TIN ORGANIST',
+        subtitle: '管风琴演奏家',
+        cta: '了解更多',
+      },
+    };
+    
+    const locale = isEnglish ? 'en' : 'zh';
+    return translations[locale]?.[key] || key;
+  };
+  
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -48]);
   const y = useSpring(rawY, { stiffness: 60, damping: 14 });
@@ -55,15 +75,6 @@ const Hero: React.FC<HeroProps> = ({}) => {
         animate={{ opacity: 1, y: 0 }}
       >
         <h1 className="hero__title">{t('title')}</h1>
-        {/* <p className="hero__subtitle">{t('subtitle')}</p> */}
-        {/* <motion.a 
-          className="hero__cta" 
-          href="/#about"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {t('cta')}
-        </motion.a> */}
       </motion.div>
     </section>
   );

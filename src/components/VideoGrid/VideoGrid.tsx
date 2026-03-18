@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 interface VideoItem {
   id: number;
@@ -13,7 +13,35 @@ interface VideoItem {
 }
 
 const VideoGrid: React.FC = () => {
-  const t = useTranslations('video');
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en');
+  
+  const t = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        title: 'Videos',
+        item1: 'Bach Organ Works',
+        item2: 'Mendelssohn Performance',
+        item3: 'French Romantic Organ',
+        item4: 'Baroque Masterpieces',
+        item5: 'Contemporary Organ Music',
+        item6: 'Christmas Organ Recital',
+      },
+      zh: {
+        title: '视频',
+        item1: '巴赫管风琴作品',
+        item2: '门德尔松演奏',
+        item3: '法国浪漫派管风琴',
+        item4: '巴洛克杰作',
+        item5: '当代管风琴音乐',
+        item6: '圣诞管风琴独奏会',
+      },
+    };
+    
+    const locale = isEnglish ? 'en' : 'zh';
+    return translations[locale]?.[key] || key;
+  };
+  
   const videos: VideoItem[] = [
     {
       id:1,

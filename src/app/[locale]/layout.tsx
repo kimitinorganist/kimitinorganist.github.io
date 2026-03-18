@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import {NextIntlClientProvider} from 'next-intl';
-import {notFound} from 'next/navigation';
 
 // Static imports for messages
 import enMessages from '../../../messages/en.json';
@@ -21,24 +19,10 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
-  params
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
 }) {
-  const {locale} = await params;
-  
-  if (!locales.includes(locale)) {
-    notFound();
-  }
-
-  const messages = messagesMap[locale as keyof typeof messagesMap];
-
-  return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
-      {children}
-    </NextIntlClientProvider>
-  );
+  return <>{children}</>;
 }
