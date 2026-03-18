@@ -5,6 +5,7 @@ import PerformanceSection from '../../components/PerformanceGrid/PerformanceGrid
 import MusicSection from '../../components/MusicSection/MusicSection';
 import NewsSection from '../../components/NewsSection/NewsSection';
 import VideoGrid from '../../components/VideoGrid/VideoGrid';
+import SocialIcons from '../../components/SocialIcons/SocialIcons';
 import Footer from '../../components/Footer/Footer';
 
 const locales = ['en', 'zh'];
@@ -24,6 +25,7 @@ export default function Home() {
       <NewsSection />
       <VideoGrid />
       <Footer />
+      <SocialIcons />
     </>
   );
 }

@@ -1,7 +1,7 @@
 .music-section {
   padding: 8rem 0;
   background: $color-bg;
-  background-image: url('/images/music.png');
+  background-image: url('/images/music.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -48,6 +48,6 @@
 
   // Mobile background image
   @include mq-mobile {
-    background-image: url('/images/music-mobile.png');
+    background-image: url('/images/music-mobile.jpg');
   }
 }

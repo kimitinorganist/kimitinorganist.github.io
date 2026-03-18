@@ -1,0 +1,42 @@
+.social-icons {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 100;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    &:hover {
+      transform: translateX(-5px);
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // 响应式设计
+  @media (max-width: 768px) {
+    right: 10px;
+    gap: 15px;
+
+    &__link {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

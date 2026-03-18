@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url('/images/about.png');
+  background-image: url('/images/about.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -71,6 +71,6 @@
 
   // Mobile background image
   @include mq-mobile {
-    background-image: url('/images/about-mobile.png');
+    background-image: url('/images/about-mobile.jpg');
   }
 }
