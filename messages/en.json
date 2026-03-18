@@ -30,6 +30,8 @@
   },
   "news": {
     "title": "Latest News",
+    "back": "Back to News",
+    "notFound": "News item not found",
     "item1": "News Title: Tian Hao playing religious music in a church",
     "item2": "News Title: Tian Hao playing religious music in a church and receiving love from church members",
     "item3": "News Title: Tian Hao participating in organist exchange activities abroad, with famous organists",

@@ -3,22 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import LocaleLink from '../LocaleLink/LocaleLink';
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const locale = useLocale();
-  const t = useTranslations('navbar');
   const [open, setOpen] = useState(false);
   const [musicDropdownOpen, setMusicDropdownOpen] = useState(false);
   const [mobileMusicOpen, setMobileMusicOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
   
-  const isEnglish = locale === 'en';
+  const isEnglish = pathname.startsWith('/en');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +27,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const switchLanguage = (lang: string) => {
-    const newPathname = pathname.replace(`/${locale}`, `/${lang}`);
+    const newPathname = pathname.replace(/^\/(en|zh)/, `/${lang}`);
     router.push(newPathname);
   };
 
@@ -47,6 +44,42 @@ const Navbar: React.FC = () => {
       setMusicDropdownOpen(false);
     }, 200);
     setDropdownTimeout(timeout);
+  };
+
+  const t = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        home: 'Home',
+        music: 'Music',
+        musicSheet: 'Sheet Music',
+        performance: 'Performances',
+        merchandise: 'Merchandise',
+        news: 'News',
+        video: 'Videos',
+        bookPerformance: 'Book Performance',
+        about: 'About',
+        contact: 'Contact',
+        english: 'English',
+        chinese: '中文',
+      },
+      zh: {
+        home: '首页',
+        music: '音乐',
+        musicSheet: '乐谱',
+        performance: '演出',
+        merchandise: '商品',
+        news: '新闻',
+        video: '视频',
+        bookPerformance: '预约演出',
+        about: '关于',
+        contact: '联系',
+        english: 'English',
+        chinese: '中文',
+      },
+    };
+    
+    const locale = isEnglish ? 'en' : 'zh';
+    return translations[locale]?.[key] || key;
   };
 
   return (
@@ -66,7 +99,7 @@ const Navbar: React.FC = () => {
             onMouseEnter={handleDropdownShow}
             onMouseLeave={handleDropdownHide}
           >
-            <a className="navbar__link" href={`/${locale}#music`}>
+            <a className="navbar__link" href={`/${isEnglish ? 'en' : 'zh'}#music`}>
               {t('music')}
             </a>
             {musicDropdownOpen && (

@@ -2,10 +2,26 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 const MusicSection: React.FC = () => {
-  const t = useTranslations('music');
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en');
+  
+  const t = (key: string) => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        title: 'Music',
+      },
+      zh: {
+        title: '音乐',
+      },
+    };
+    
+    const locale = isEnglish ? 'en' : 'zh';
+    return translations[locale]?.[key] || key;
+  };
+  
   return (
     <section className="music-section" id="music" role="region" aria-label="Music">
       <div className="music-section__container site__container">

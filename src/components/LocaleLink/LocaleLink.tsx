@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import {useLocale} from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 interface LocaleLinkProps {
   href: string;
@@ -16,7 +18,9 @@ const LocaleLink: React.FC<LocaleLinkProps> = ({
   onClick,
   ...props 
 }) => {
-  const locale = useLocale();
+  const pathname = usePathname();
+  const isEnglish = pathname.startsWith('/en');
+  const locale = isEnglish ? 'en' : 'zh';
   
   return (
     <Link href={`/${locale}${href}`} className={className} onClick={onClick} {...props}>
